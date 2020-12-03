@@ -42,31 +42,5 @@ public class Triangle extends Figure {
         return false;
     }
 
-//    public double square() {
-//        if(check()) {
-//            double semiPerimetr = semiPerimeter();
-//            LOGGER.log(Level.DEBUG, this.toString() +"square was counted");
-//            return Math.sqrt(semiPerimetr *
-//                    (semiPerimetr - module(firstTop, secondTop)) *
-//                    (semiPerimetr - module(secondTop, thirdTop)) *
-//                    (semiPerimetr - module(thirdTop, firstTop)));
-//        }
-//        LOGGER.log(Level.ERROR,this.toString()+"square was not counted");
-//        return 0;
-//    }
 
-
-//    private double semiPerimeter(){
-//
-//        return perimeter()/2;
-//    }
-
-//    public double perimeter() {
-//        if(check()) {
-//            LOGGER.log(Level.DEBUG,this.toString()+"square was counted");
-//            return module(firstTop, secondTop) + module(secondTop, thirdTop) + module(thirdTop, firstTop);
-//        }
-//        LOGGER.log(Level.ERROR,this.toString()+"square was not counted");
-//        return 0;
-//    }
 }

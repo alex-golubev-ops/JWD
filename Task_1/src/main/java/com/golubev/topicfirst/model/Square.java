@@ -41,21 +41,5 @@ public class Square extends Figure {
                 '}';
     }
 
-    //        public double square() {
-//            if (check()){
-//                return Math.pow(module(firstTop,secondTop),2);
-//            }
-//            LOGGER.log(Level.WARN,this.toString()+" Square was not counted ");
-//            return 0;
-//
-//        }
-//
-//        public double perimeter() {
-//            if(check()){
-//                LOGGER.log(Level.DEBUG, this.toString()+" Perimeter is counting");
-//                return 4*module(firstTop,secondTop) ;
-//            }
-//            LOGGER.log(Level.ERROR,this.toString()+ this.toString()+" Perimeter was not counted ");
-//            return 0;
-//        }
+
 }
