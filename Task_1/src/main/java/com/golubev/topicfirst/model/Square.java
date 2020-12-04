@@ -30,6 +30,7 @@ public class Square extends Figure {
         if (lines[0] == lines[3] && lines[4] == lines[5]) {
             return true;
         }
+
         LOGGER.log(Level.ERROR, this.toString() + "is not square ");
         return false;
     }
@@ -43,3 +44,5 @@ public class Square extends Figure {
 
 
 }
+
+
