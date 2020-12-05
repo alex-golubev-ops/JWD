@@ -27,4 +27,5 @@ public class Line {
                 "points=" + Arrays.toString(points) +
                 '}';
     }
+
 }

@@ -1,8 +1,10 @@
 package com.golubev.topicfirst.model;
 
 import com.golubev.topicfirst.strategy.FigurePropertiesStrategy;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.util.Arrays;
 
 class Triangle extends Figure implements FigurePropertiesStrategy {
@@ -23,10 +25,11 @@ class Triangle extends Figure implements FigurePropertiesStrategy {
 
     public double square() {
         double semiPerimetr = semiPerimeter();
+        double[] lines = getLines(points.length);
         return Math.sqrt(semiPerimetr *
-                (semiPerimetr - Line.modul(points[0], points[1])) *
-                (semiPerimetr - Line.modul(points[1], points[2])) *
-                (semiPerimetr - Line.modul(points[2], points[0])));
+                (semiPerimetr - lines[0]) *
+                (semiPerimetr - lines[1]) *
+                (semiPerimetr - lines[2]));
     }
 
 
@@ -35,8 +38,28 @@ class Triangle extends Figure implements FigurePropertiesStrategy {
     }
 
     public double perimeter() {
-        return Line.modul(points[0], points[1]) +
-                Line.modul(points[1], points[2]) +
-                Line.modul(points[2], points[0]);
+       double[] lines = getLines(points.length);
+       double perimeter = 0;
+        for (int i = 0; i < lines.length; i++) {
+            perimeter+=lines[i];
+        }
+        return perimeter;
     }
+
+    @Override
+    public boolean check() {
+        if (!checkPoints()) {
+            return false;
+        }
+        double[] lines = getLines(points.length);
+        if (    lines[0] + lines[1] >= lines[2] &&
+                lines[1] + lines[2] >= lines[0] &&
+                lines[2] + lines[0] >= lines[1]
+        ){
+            return true;
+        }
+        return false;
+
+    }
+
 }

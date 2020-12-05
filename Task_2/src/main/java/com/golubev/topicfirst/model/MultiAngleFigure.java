@@ -15,11 +15,12 @@ class MultiAngleFigure extends Figure implements FigurePropertiesStrategy {
 
     @Override
     public double perimeter() {
-        int result = 0;
-        for (int i = 0, j = i + 1; i < points.length; j++, i++) {
-            result += Line.modul(points[i], points[j]);
+      double[] lines = getLines(points.length);
+      int perimeter = 0;
+        for (double line : lines) {
+            perimeter+=line;
         }
-        return result;
+        return perimeter;
     }
 
     @Override
@@ -30,7 +31,15 @@ class MultiAngleFigure extends Figure implements FigurePropertiesStrategy {
     }
 
     @Override
-    public double square() throws FigureNotExistException {
+    public double square()  {
         return points.length / 2 * Line.modul(points[0], points[1]) / (4 * Math.tan(360 / (points.length)));
+    }
+
+    @Override
+    public boolean check() {
+        if (!checkPoints()) {
+            return false;
+        }
+        return true;
     }
 }

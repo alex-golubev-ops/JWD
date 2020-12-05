@@ -5,8 +5,6 @@ import com.golubev.topicfirst.strategy.FigurePropertiesStrategy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
-
 public abstract class Figure {
     protected Point[] points;
 
@@ -30,7 +28,18 @@ public abstract class Figure {
         this.strategy = strategy;
     }
 
+    public abstract boolean check();
 
+    protected boolean checkPoints() {
+        for (int i = 0; i < points.length - 1; i++) {
+            for (int j = i + 1; j < points.length; j++) {
+                if (points[i].equals(points[j])) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     public double getSquare() throws FigureNotExistException {
         return strategy.square();
@@ -39,4 +48,19 @@ public abstract class Figure {
     public double getPerimeter() throws FigureNotExistException {
         return strategy.perimeter();
     }
+    protected double[] getLines(int counter){
+        double[] array = new double[counter];
+        int numberPointsFirst=0;
+        int numberPointsSecond=0;
+        for (int i = 0; i < array.length; i++) {
+            numberPointsSecond++;
+            if(numberPointsSecond>=array.length){
+                numberPointsSecond=0;
+            }
+            array[i]=Line.modul(points[numberPointsFirst],points[numberPointsSecond]);
+            numberPointsFirst++;
+        }
+        return array;
+    }
+
 }

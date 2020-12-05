@@ -21,12 +21,19 @@ public final class TaskSecond {
 
     private TaskSecond() {
         try {
-            square = factory.getSquare(generationPoints(4));
-            square.setStrategy(factory.getSquare(generationPoints(4)));
-            triangle = factory.getTriangle(generationPoints(3));
-            triangle.setStrategy(factory.getTriangle(generationPoints(3)));
-            multiAngleFigure = factory.getMultiAngleFigure(generationPoints(5));
-            multiAngleFigure.setStrategy(factory.getMultiAngleFigure(generationPoints(5)));
+            square = factory.getSquare(new Point[]{new Point(2,1),
+                    new Point(4,1), new Point(4,3), new Point(2,3)});
+            square.setStrategy(factory.getSquare(new Point[]{new Point(2,1),
+                    new Point(4,1), new Point(4,3), new Point(2,3)}));
+            triangle = factory.getTriangle(new Point[]{new Point(1,1),
+                    new Point(2,1), new Point(2,3)});
+            triangle.setStrategy(factory.getTriangle(new Point[]{
+                    new Point(1,1), new Point(2,1), new Point(2,3)}));
+            multiAngleFigure = factory.getMultiAngleFigure(new Point[]{new Point(3,2),
+            new Point(5,2),new Point(7,4), new Point(9,4), new Point(9,6),new Point(3,6)});
+            multiAngleFigure.setStrategy(factory.getMultiAngleFigure(new Point[]{new Point(3,2),
+                    new Point(5,2),new Point(7,4), new Point(9,4),
+                    new Point(9,6),new Point(3,6)}));
         } catch (FigureException e) {
             e.printStackTrace();
         }
@@ -46,10 +53,10 @@ public final class TaskSecond {
             LOGGER.log(Level.DEBUG, "start application");
             LOGGER.log(Level.INFO, triangle.toString() + " perimeter: " + triangle.getPerimeter());
             LOGGER.log(Level.INFO, triangle.toString() + " square: " + triangle.getSquare());
-            LOGGER.log(Level.INFO, square.toString() + " perimeter: " + triangle.getPerimeter());
-            LOGGER.log(Level.INFO, square.toString() + " square: " + triangle.getSquare());
+            LOGGER.log(Level.INFO, square.toString() + " perimeter: " + square.getPerimeter());
+            LOGGER.log(Level.INFO, square.toString() + " square: " + square.getSquare());
             LOGGER.log(Level.INFO, multiAngleFigure.toString() + " square: " + multiAngleFigure.getSquare());
-            LOGGER.log(Level.INFO, multiAngleFigure.toString() + " perimeter: " + multiAngleFigure.getSquare());
+            LOGGER.log(Level.INFO, multiAngleFigure.toString() + " perimeter: " + multiAngleFigure.getPerimeter());
             LOGGER.log(Level.DEBUG, "finish application");
         }catch (FigureNotExistException e) {
             e.printStackTrace();
