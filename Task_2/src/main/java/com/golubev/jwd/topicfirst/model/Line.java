@@ -1,4 +1,4 @@
-package com.golubev.topicfirst.model;
+package com.golubev.jwd.topicfirst.model;
 
 import java.util.Arrays;
 
@@ -26,6 +26,20 @@ public class Line {
         return "Line{" +
                 "points=" + Arrays.toString(points) +
                 '}';
+    }
+    public static  double[] getLines(Point[] points){
+        double[] array = new double[points.length];
+        int numberPointsFirst=0;
+        int numberPointsSecond=0;
+        for (int i = 0; i < array.length; i++) {
+            numberPointsSecond++;
+            if(numberPointsSecond>=array.length){
+                numberPointsSecond=0;
+            }
+            array[i]=Line.modul(points[numberPointsFirst],points[numberPointsSecond]);
+            numberPointsFirst++;
+        }
+        return array;
     }
 
 }

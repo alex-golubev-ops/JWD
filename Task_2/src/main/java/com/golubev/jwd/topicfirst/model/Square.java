@@ -1,6 +1,6 @@
-package com.golubev.topicfirst.model;
+package com.golubev.jwd.topicfirst.model;
 
-import com.golubev.topicfirst.strategy.FigurePropertiesStrategy;
+import com.golubev.jwd.topicfirst.strategy.FigurePropertiesStrategy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,6 +12,7 @@ class Square extends Figure implements FigurePropertiesStrategy {
     public Square(Point[] points) {
         this.points = new Point[4];
         System.arraycopy(points, 0, this.points, 0, points.length);
+        strategy = this;
     }
 
     @Override
@@ -29,18 +30,5 @@ class Square extends Figure implements FigurePropertiesStrategy {
         return 4 * Line.modul(points[0], points[1]);
     }
 
-    @Override
-    public boolean check() {
-        if (!checkPoints()) {
-            return false;
-        }
-        double[] lines = getLines(points.length);
-        double line = lines[0];
-        for (int i = 0; i < lines.length; i++) {
-            if (line != lines[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
+
 }

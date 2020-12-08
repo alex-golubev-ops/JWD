@@ -1,7 +1,6 @@
-package com.golubev.topicfirst.model;
+package com.golubev.jwd.topicfirst.model;
 
-import com.golubev.topicfirst.strategy.FigurePropertiesStrategy;
-import org.apache.logging.log4j.Level;
+import com.golubev.jwd.topicfirst.strategy.FigurePropertiesStrategy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,8 +12,8 @@ class Triangle extends Figure implements FigurePropertiesStrategy {
     public Triangle(Point[] points) {
         this.points = new Point[3];
         System.arraycopy(points, 0, this.points, 0, points.length);
+        strategy = this;
     }
-
 
     @Override
     public String toString() {
@@ -25,7 +24,7 @@ class Triangle extends Figure implements FigurePropertiesStrategy {
 
     public double square() {
         double semiPerimetr = semiPerimeter();
-        double[] lines = getLines(points.length);
+        double[] lines = Line.getLines(points);
         return Math.sqrt(semiPerimetr *
                 (semiPerimetr - lines[0]) *
                 (semiPerimetr - lines[1]) *
@@ -38,7 +37,7 @@ class Triangle extends Figure implements FigurePropertiesStrategy {
     }
 
     public double perimeter() {
-       double[] lines = getLines(points.length);
+       double[] lines = Line.getLines(points);
        double perimeter = 0;
         for (int i = 0; i < lines.length; i++) {
             perimeter+=lines[i];
@@ -46,20 +45,6 @@ class Triangle extends Figure implements FigurePropertiesStrategy {
         return perimeter;
     }
 
-    @Override
-    public boolean check() {
-        if (!checkPoints()) {
-            return false;
-        }
-        double[] lines = getLines(points.length);
-        if (    lines[0] + lines[1] >= lines[2] &&
-                lines[1] + lines[2] >= lines[0] &&
-                lines[2] + lines[0] >= lines[1]
-        ){
-            return true;
-        }
-        return false;
 
-    }
 
 }

@@ -1,4 +1,4 @@
-package com.golubev.topicfirst.model;
+package com.golubev.jwd.topicfirst.model;
 
 import java.util.Objects;
 

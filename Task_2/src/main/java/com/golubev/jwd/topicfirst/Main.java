@@ -1,8 +1,8 @@
-package com.golubev.topicfirst;
+package com.golubev.jwd.topicfirst;
 
 
-import com.golubev.topicfirst.app.TaskSecond;
-import com.golubev.topicfirst.exception.FigureException;
+import com.golubev.jwd.topicfirst.app.TaskSecond;
+import com.golubev.jwd.topicfirst.exception.FigureException;
 
 
 public class Main {

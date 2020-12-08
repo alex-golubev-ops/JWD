@@ -1,6 +1,6 @@
-package com.golubev.topicfirst.strategy;
+package com.golubev.jwd.topicfirst.strategy;
 
-import com.golubev.topicfirst.exception.FigureNotExistException;
+import com.golubev.jwd.topicfirst.exception.FigureNotExistException;
 
 public interface FigurePropertiesStrategy {
     double perimeter() throws FigureNotExistException;
