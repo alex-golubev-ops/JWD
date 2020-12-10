@@ -12,6 +12,8 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public final class TaskSecond {
@@ -21,34 +23,27 @@ public final class TaskSecond {
     private Figure triangle;
     private Figure multiAngleFigure;
     private Factory factory = new FigureFigureDecorator(FigureFactory.getInstance(),
-            new PostProcessor[]{new CheckExistPostProcessor()}, new PreProcessor[]{new CheckPointsPreProcessor()});
+            new ArrayList<PostProcessor>(Arrays.asList(new CheckExistPostProcessor())),
+            new ArrayList<PreProcessor>(Arrays.asList(new CheckPointsPreProcessor())));
 
     private TaskSecond() {
 
         try {
-            square = factory.createFigure(FigureType.SQUARE, new Point[]{new Point(2, 1),
-                    new Point(4, 1), new Point(4, 3), new Point(2, 3)});
+            square = factory.createFigure(FigureType.SQUARE, new ArrayList<Point>(Arrays.asList(new Point(2, 1),
+                    new Point(4, 1), new Point(4, 3), new Point(2, 3))));
 
-            triangle = factory.createFigure(FigureType.TRIANGLE, new Point[]{new Point(1, 1),
-                    new Point(2, 1), new Point(2, 3)});
+            triangle = factory.createFigure(FigureType.TRIANGLE, new ArrayList<Point>(Arrays.asList(new Point(1, 1),
+                    new Point(2, 1), new Point(2, 3))));
 
-            multiAngleFigure = factory.createFigure(FigureType.MULTI_ANGLE_FIGURE, new Point[]{new Point(3, 2),
+            multiAngleFigure = factory.createFigure(FigureType.MULTI_ANGLE_FIGURE, new ArrayList<Point>(
+                    Arrays.asList(new Point(3, 2),
                     new Point(5, 2), new Point(7, 4),
                     new Point(9, 4), new Point(9, 6),
-                    new Point(3, 6)});
+                    new Point(3, 6))));
 
         } catch (FigureException e) {
             e.printStackTrace();
         }
-    }
-
-    private Point[] generationPoints(int counterGenerationPoints) {
-        Point[] generationPoints = new Point[counterGenerationPoints];
-        Random random = new Random();
-        for (int i = 0; i < generationPoints.length; i++) {
-            generationPoints[i] = new Point(random.nextInt(10), random.nextInt(10));
-        }
-        return generationPoints;
     }
 
     public void run() {

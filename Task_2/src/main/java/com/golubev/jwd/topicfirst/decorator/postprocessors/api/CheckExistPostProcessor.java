@@ -7,6 +7,8 @@ import com.golubev.jwd.topicfirst.model.Figure;
 import com.golubev.jwd.topicfirst.model.FigureType;
 import com.golubev.jwd.topicfirst.model.Line;
 
+import java.util.List;
+
 public class CheckExistPostProcessor implements PostProcessor {
     @Override
     public Figure process(FigureType type, Figure figure) throws FigureException {
@@ -16,10 +18,10 @@ public class CheckExistPostProcessor implements PostProcessor {
 
             }
             case TRIANGLE: {
-                double[] lines = Line.getLines(figure.getPoints());
-                if (lines[0] + lines[1] <= lines[2] ||
-                        lines[1] + lines[2] <= lines[0] ||
-                        lines[2] + lines[0] <= lines[1]
+                List<Double> lines = Line.getLines(figure.getPoints());
+                if (lines.get(0) + lines.get(1) <= lines.get(2) ||
+                        lines.get(1) + lines.get(2) <= lines.get(0) ||
+                        lines.get(2) + lines.get(0) <= lines.get(1)
                 ) {
                     throw new FigureNotExistException("Triangle can't exist");
                 }
@@ -27,10 +29,10 @@ public class CheckExistPostProcessor implements PostProcessor {
 
             }
             case SQUARE: {
-                double[] lines = Line.getLines(figure.getPoints());
-                double line = lines[0];
-                for (int i = 0; i < lines.length; i++) {
-                    if (line != lines[i]) {
+                List<Double> lines = Line.getLines(figure.getPoints());
+                double line = lines.get(0);
+                for (Double aDouble : lines) {
+                    if (line != aDouble) {
                         throw new FigureNotExistException("Square can't exist");
                     }
                 }

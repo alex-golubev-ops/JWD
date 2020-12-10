@@ -1,42 +1,41 @@
 package com.golubev.jwd.topicfirst.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Line {
-    private final Point[] points = new Point[2];
+    private  List points;
 
-    public Line(Point[] points) {
-        System.arraycopy(points, 0, this.points, 0, points.length);
+    public Line(Point... points) {
+         if(points.length==2){
+             this.points = new ArrayList(2);
+             this.points.add(points[0]);
+             this.points.add(points[1]);
+         }
     }
 
     public static double modul(Point first, Point second) {
         return Math.sqrt(Math.pow(second.getX() - first.getX(), 2) + Math.pow(second.getY() - first.getY(), 2));
     }
 
-    public Point[] getPoints() {
-        return points;
-    }
-
-    public void setPoints(Point[] points) {
-        System.arraycopy(points, 0, this.points, 0, points.length);
-    }
 
     @Override
     public String toString() {
         return "Line{" +
-                "points=" + Arrays.toString(points) +
+                "points=" + points.toString() +
                 '}';
     }
-    public static  double[] getLines(Point[] points){
-        double[] array = new double[points.length];
+    public static  List<Double> getLines(List<Point> points){
+        List<Double> array = new ArrayList<>(points.size());
         int numberPointsFirst=0;
         int numberPointsSecond=0;
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < points.size(); i++) {
             numberPointsSecond++;
-            if(numberPointsSecond>=array.length){
+            if(numberPointsSecond>=points.size()){
                 numberPointsSecond=0;
             }
-            array[i]=Line.modul(points[numberPointsFirst],points[numberPointsSecond]);
+            array.add(Line.modul(points.get(numberPointsFirst),points.get(numberPointsSecond)));
             numberPointsFirst++;
         }
         return array;

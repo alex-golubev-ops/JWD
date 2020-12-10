@@ -5,21 +5,20 @@ import com.golubev.jwd.topicfirst.strategy.FigurePropertiesStrategy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
 public abstract class Figure {
-    protected Point[] points;
+    protected List<Point> points;
 
-    public Point[] getPoints() {
-        return points;
-    }
 
-    public void setPoints(Point[] points) {
-        this.points = points;
-    }
 
     private final Logger LOGGER = LogManager.getLogger(Figure.class);
 
     protected FigurePropertiesStrategy strategy;
 
+    public List<Point> getPoints() {
+        return points;
+    }
 
     public double getSquare() throws FigureNotExistException {
         return strategy.square();

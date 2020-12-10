@@ -3,6 +3,8 @@ package com.golubev.jwd.topicfirst.model;
 import com.golubev.jwd.topicfirst.exception.FigureException;
 import com.golubev.jwd.topicfirst.factory.FigureFactory;
 
+import java.util.List;
+
 public final class SimpleFigureFactory implements FigureFactory {
     private static SimpleFigureFactory instance;
     private SimpleFigureFactory(){
@@ -16,7 +18,7 @@ public final class SimpleFigureFactory implements FigureFactory {
     }
 
     @Override
-    public Figure createFigure(FigureType type, Point[] figureConstituents) throws FigureException {
+    public Figure createFigure(FigureType type, List<Point> figureConstituents) throws FigureException {
         switch (type){
             case SQUARE: {
                 return new Square(figureConstituents);

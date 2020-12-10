@@ -9,32 +9,37 @@ import com.golubev.jwd.topicfirst.model.Figure;
 import com.golubev.jwd.topicfirst.model.FigureType;
 import com.golubev.jwd.topicfirst.model.Point;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FigureFigureDecorator implements Factory {
     private Factory factory;
 
     public FigureFigureDecorator(Factory factory) {
         this.factory = factory;
+
     }
 
-    public FigureFigureDecorator(Factory factory, PostProcessor[] postProcessors, PreProcessor[] preProcessors) {
+    public FigureFigureDecorator(Factory factory, List<? extends PostProcessor> postProcessors,
+                                 List<?extends PreProcessor> preProcessors) {
         this.factory = factory;
-        this.postProcessors = postProcessors;
-        this.preProcessors = preProcessors;
+        this.postProcessors = new ArrayList<>(postProcessors);
+        this.preProcessors = new ArrayList<>(preProcessors);
     }
 
-    private PostProcessor[] postProcessors;
-    private PreProcessor[] preProcessors;
+    private List<PostProcessor> postProcessors;
+    private List<PreProcessor> preProcessors;
 
-    public void setPostProcessors(PostProcessor[] postProcessors) {
-        this.postProcessors = postProcessors;
+    public void addPostProcessors(PostProcessor postProcessor) {
+        postProcessors.add(postProcessor);
     }
 
-    public void setPreProcessors(PreProcessor[] preProcessors) {
-        this.preProcessors = preProcessors;
+    public void setPreProcessors(PreProcessor preProcessor) {
+        preProcessors.add(preProcessor);
     }
 
     @Override
-    public Figure createFigure(FigureType type, Point[] figureConstituents) throws FigureException {
+    public Figure createFigure(FigureType type, List<Point> figureConstituents) throws FigureException {
         for (PreProcessor preProcessor : preProcessors) {
             preProcessor.process(figureConstituents);
         }

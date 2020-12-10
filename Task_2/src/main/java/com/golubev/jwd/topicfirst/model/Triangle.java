@@ -4,31 +4,32 @@ import com.golubev.jwd.topicfirst.strategy.FigurePropertiesStrategy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 class Triangle extends Figure implements FigurePropertiesStrategy {
     private final Logger LOGGER = LogManager.getLogger(Triangle.class);
 
-    public Triangle(Point[] points) {
-        this.points = new Point[3];
-        System.arraycopy(points, 0, this.points, 0, points.length);
+    public Triangle(List<Point> points) {
+        this.points = new ArrayList<>(points);
         strategy = this;
     }
 
     @Override
     public String toString() {
         return "Triangle{" +
-                "points=" + Arrays.toString(points) +
+                "points=" + points.toString() +
                 '}';
     }
 
     public double square() {
         double semiPerimetr = semiPerimeter();
-        double[] lines = Line.getLines(points);
+        List<Double> lines = Line.getLines(points);
         return Math.sqrt(semiPerimetr *
-                (semiPerimetr - lines[0]) *
-                (semiPerimetr - lines[1]) *
-                (semiPerimetr - lines[2]));
+                (semiPerimetr - lines.get(0)) *
+                (semiPerimetr - lines.get(1)) *
+                (semiPerimetr - lines.get(2)));
     }
 
 
@@ -37,10 +38,10 @@ class Triangle extends Figure implements FigurePropertiesStrategy {
     }
 
     public double perimeter() {
-       double[] lines = Line.getLines(points);
+       List<Double> lines = Line.getLines(points);
        double perimeter = 0;
-        for (int i = 0; i < lines.length; i++) {
-            perimeter+=lines[i];
+        for (Double line : lines) {
+            perimeter += line;
         }
         return perimeter;
     }

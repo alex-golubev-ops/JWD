@@ -4,30 +4,31 @@ import com.golubev.jwd.topicfirst.strategy.FigurePropertiesStrategy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 class Square extends Figure implements FigurePropertiesStrategy {
     private final Logger LOGGER = LogManager.getLogger(Square.class);
 
-    public Square(Point[] points) {
-        this.points = new Point[4];
-        System.arraycopy(points, 0, this.points, 0, points.length);
+    public Square(List<Point> points) {
+        this.points = new ArrayList<>(points);
         strategy = this;
     }
 
     @Override
     public String toString() {
         return "Square{" +
-                "points=" + Arrays.toString(points) +
+                "points=" + points.toString() +
                 '}';
     }
 
     public double square() {
-        return Math.pow(Line.modul(points[0], points[1]), 2);
+        return Math.pow(Line.modul(points.get(0), points.get(1)), 2);
     }
 
     public double perimeter() {
-        return 4 * Line.modul(points[0], points[1]);
+        return 4 * Line.modul(points.get(0), points.get(1));
     }
 
 
