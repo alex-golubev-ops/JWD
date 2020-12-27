@@ -5,7 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 class Triangle extends Figure implements FigurePropertiesStrategy {
@@ -38,14 +37,13 @@ class Triangle extends Figure implements FigurePropertiesStrategy {
     }
 
     public double perimeter() {
-       List<Double> lines = Line.getLines(points);
-       double perimeter = 0;
+        List<Double> lines = Line.getLines(points);
+        double perimeter = 0;
         for (Double line : lines) {
             perimeter += line;
         }
         return perimeter;
     }
-
 
 
 }

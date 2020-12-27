@@ -5,14 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Line {
-    private  List points;
+    private List<Point> points;
 
     public Line(Point... points) {
-         if(points.length==2){
-             this.points = new ArrayList(2);
-             this.points.add(points[0]);
-             this.points.add(points[1]);
-         }
+        if (points.length == 2) {
+            this.points = new ArrayList(Arrays.asList(points));
+
+        }
     }
 
     public static double modul(Point first, Point second) {
@@ -26,16 +25,17 @@ public class Line {
                 "points=" + points.toString() +
                 '}';
     }
-    public static  List<Double> getLines(List<Point> points){
+
+    public static List<Double> getLines(List<Point> points) {
         List<Double> array = new ArrayList<>(points.size());
-        int numberPointsFirst=0;
-        int numberPointsSecond=0;
+        int numberPointsFirst = 0;
+        int numberPointsSecond = 0;
         for (int i = 0; i < points.size(); i++) {
             numberPointsSecond++;
-            if(numberPointsSecond>=points.size()){
-                numberPointsSecond=0;
+            if (numberPointsSecond >= points.size()) {
+                numberPointsSecond = 0;
             }
-            array.add(Line.modul(points.get(numberPointsFirst),points.get(numberPointsSecond)));
+            array.add(Line.modul(points.get(numberPointsFirst), points.get(numberPointsSecond)));
             numberPointsFirst++;
         }
         return array;

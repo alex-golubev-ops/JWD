@@ -7,13 +7,14 @@ import java.util.List;
 
 
 public final class FigureFactory implements Factory {
-    private static FigureFactory instance = new FigureFactory();
+    private static final FigureFactory instance = new FigureFactory();
 
     private FigureFactory() {
 
     }
 
     public static FigureFactory getInstance() {
+
         return instance;
     }
 

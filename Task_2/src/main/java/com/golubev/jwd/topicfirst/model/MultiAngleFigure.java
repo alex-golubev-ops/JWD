@@ -5,7 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 class MultiAngleFigure extends Figure implements FigurePropertiesStrategy {
@@ -13,7 +12,7 @@ class MultiAngleFigure extends Figure implements FigurePropertiesStrategy {
 
     public MultiAngleFigure(List<Point> points) {
         this.points = new ArrayList<>(points);
-        strategy= this;
+        strategy = this;
     }
 
     @Override

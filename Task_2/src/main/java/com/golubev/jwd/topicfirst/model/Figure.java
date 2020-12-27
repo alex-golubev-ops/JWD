@@ -11,13 +11,22 @@ public abstract class Figure {
     protected List<Point> points;
 
 
-
     private final Logger LOGGER = LogManager.getLogger(Figure.class);
 
     protected FigurePropertiesStrategy strategy;
 
     public List<Point> getPoints() {
         return points;
+    }
+    public void setPoints(List<Point> points){
+        this.points = points;
+    }
+
+    @Override
+    public String toString() {
+        return "Figure{" +
+                "points=" + points +
+                '}';
     }
 
     public double getSquare() throws FigureNotExistException {

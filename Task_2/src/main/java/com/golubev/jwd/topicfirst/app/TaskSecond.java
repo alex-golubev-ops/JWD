@@ -14,8 +14,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
-
 public final class TaskSecond {
     private final Logger LOGGER = LogManager.getLogger(TaskSecond.class);
     private static TaskSecond instance;
@@ -37,9 +35,9 @@ public final class TaskSecond {
 
             multiAngleFigure = factory.createFigure(FigureType.MULTI_ANGLE_FIGURE, new ArrayList<Point>(
                     Arrays.asList(new Point(3, 2),
-                    new Point(5, 2), new Point(7, 4),
-                    new Point(9, 4), new Point(9, 6),
-                    new Point(3, 6))));
+                            new Point(5, 2), new Point(7, 4),
+                            new Point(9, 4), new Point(9, 6),
+                            new Point(3, 6))));
 
         } catch (FigureException e) {
             e.printStackTrace();

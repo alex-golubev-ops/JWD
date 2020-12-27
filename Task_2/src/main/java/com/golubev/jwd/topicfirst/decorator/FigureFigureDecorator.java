@@ -3,7 +3,6 @@ package com.golubev.jwd.topicfirst.decorator;
 import com.golubev.jwd.topicfirst.decorator.postprocessors.model.PostProcessor;
 import com.golubev.jwd.topicfirst.decorator.preprocessors.model.PreProcessor;
 import com.golubev.jwd.topicfirst.exception.FigureException;
-import com.golubev.jwd.topicfirst.factory.FigureFactory;
 import com.golubev.jwd.topicfirst.model.Factory;
 import com.golubev.jwd.topicfirst.model.Figure;
 import com.golubev.jwd.topicfirst.model.FigureType;
@@ -21,7 +20,7 @@ public class FigureFigureDecorator implements Factory {
     }
 
     public FigureFigureDecorator(Factory factory, List<? extends PostProcessor> postProcessors,
-                                 List<?extends PreProcessor> preProcessors) {
+                                 List<? extends PreProcessor> preProcessors) {
         this.factory = factory;
         this.postProcessors = new ArrayList<>(postProcessors);
         this.preProcessors = new ArrayList<>(preProcessors);
